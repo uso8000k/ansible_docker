@@ -1,0 +1,12 @@
+sudo: required
+
+services:
+  - docker
+
+install:
+  - docker build -t ansible .
+  - docker images
+
+script:
+  - docker run  --name ansible -itd ansible /bin/sh
+  - docker exec ansible /bin/sh -c "cd ~/; ansible --version"
